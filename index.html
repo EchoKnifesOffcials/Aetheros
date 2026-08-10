@@ -662,7 +662,7 @@
                     <p>Hold stock prior to transfer</p>
                 </div>
             </div>
-            <span class="reserve-badge">+₱10 Fee</span>
+            <span class="reserve-badge">+₱5 Fee</span>
         </label>
 
         <div class="checkbox-group">
@@ -731,11 +731,11 @@
     }
 
     function updateModalDetails() {
-        const reserveFee = isReserved ? 10 : 0;
+        const reserveFee = isReserved ? 5 : 0;
         const finalModalTotal = currentTotal + reserveFee;
 
         document.getElementById('modalRobuxAmount').innerText = `${currentAmount.toLocaleString()} Robux`;
-        document.getElementById('modalPhpAmount').innerText = `₱${finalModalTotal.toFixed(2)} PHP${isReserved ? ' (Includes ₱10 Reserve Fee)' : ''}`;
+        document.getElementById('modalPhpAmount').innerText = `₱${finalModalTotal.toFixed(2)} PHP${isReserved ? ' (Includes ₱5 Reserve Fee)' : ''}`;
     }
 
     function openModal() {
@@ -764,11 +764,10 @@
 
     function executeCheckout() {
         const selectedPayment = document.querySelector('input[name="paymentMethod"]:checked').value;
-        const reserveFee = isReserved ? 10 : 0;
+        const reserveFee = isReserved ? 5 : 0;
         const finalTotal = currentTotal + reserveFee;
-        const reserveText = isReserved ? "Yes (₱10 Fee Added)" : "No";
 
-        const prefilledMessage = `Hi Cens Showcase!\n\nI would like to place an order:\n• Quantity: ${currentAmount.toLocaleString()} Robux\n• Rate Tier: ${currentRateName}\n• Order Type: ${isReserved ? 'Reservation Hold' : 'Standard Order'}\n• Total Amount: ₱${finalTotal.toFixed(2)} PHP\n• Payment Method: ${selectedPayment}\n\nI have confirmed all trade requirements (18+/Parent, Order Summary & No Refund Policy). Please send payment details!`;
+        const prefilledMessage = `Hi Cens Showcase!\n\nI would like to place an order:\n• Quantity: ${currentAmount.toLocaleString()} Robux\n• Rate Tier: ${currentRateName}\n• Order Type: ${isReserved ? 'Reservation Hold (₱5 Fee)' : 'Standard Order'}\n• Total Amount: ₱${finalTotal.toFixed(2)} PHP\n• Payment Method: ${selectedPayment}\n\nI have confirmed all trade requirements (18+/Parent, Order Summary & No Refund Policy). Please send payment details!`;
 
         navigator.clipboard.writeText(prefilledMessage).then(() => {
             alert("Order details copied to clipboard! Paste them directly into your Facebook DM.");
